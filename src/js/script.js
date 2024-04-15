@@ -88,12 +88,11 @@ class BooksList {
       return 'linear-gradient(to bottom, #ff0084 0%, #ff0084 100%)';
     }
   }
-  debugger;
   render() {
     this.data.forEach(bookData => {
       const ratingBgc = this.determineRatingBgc(bookData.rating);
       const ratingWidth = bookData.rating * 10;      
-      const generatedHTML = this.template({ ...bookData, ratingBgc, ratingWidth });
+      const generatedHTML = this.template(Object.assign({}, bookData, { ratingBgc, ratingWidth }));
       const bookElement = utils.createDOMFromHTML(generatedHTML);
       this.booksList.appendChild(bookElement);
     });
